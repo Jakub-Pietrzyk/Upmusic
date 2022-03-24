@@ -23,7 +23,9 @@ const displayObject = function(obj){
   for(key in obj) {
     final += key + ": " + obj[key] + ", ";
   }
-  final = final.slice(0,-2)
+  if(final.length > 1){
+    final = final.slice(0,-2)
+  }
   return final += "}"
 }
 
@@ -49,8 +51,8 @@ app.use(expressWinston.logger({
 }));
 
 
-const songsRouter = require('./routes/songs');
-app.use('/songs', songsRouter);
+const songsRouter = require('./routes/songs.router');
+app.use('/api/songs', songsRouter);
 
 
 app.use(expressWinston.errorLogger({
